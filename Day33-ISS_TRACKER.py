@@ -2,14 +2,14 @@ import requests
 from datetime import datetime
 import smtplib
 
-MY_LAT=11.001410
-MY_LONG=76.005272
-My_CITY="kottakkal"
+MY_LAT=''
+MY_LONG=''
+My_CITY=""
 RANGE=100
 
-my_email="amritheshk008@gmail.com"
-my_pass="amrithesh@2000"
-send_to="amritheshk008@yahoo.com"
+my_email=""
+my_pass=""
+send_to=""
 iss_near_you=False
 
 #TODO get iss postiion
@@ -24,20 +24,20 @@ print("iss_position-",iss_position)
 print(f"{My_CITY} position-{(MY_LONG,MY_LAT)}")
 
 
-#TODO find if iss is near kottakkal
+#TODO find if iss is near your place
 
 
 if latitude-RANGE<MY_LAT<latitude+RANGE and longitude-RANGE<MY_LONG<longitude+RANGE:
     iss_near_you=True
 
-#TODO get sunrise and sunset time in kottakkal
+#TODO get sunrise and sunset time at your place
 parameters={
     "lat":MY_LAT,
     "lng":MY_LONG,
     "formatted":0
 }
 response2=requests.get("https://api.sunrise-sunset.org/json",params=parameters)
-               #or.get("https://api.sunrise-sunset.org/json?lat=9.931233&lng=76.267303")
+               #or.get("https://api.sunrise-sunset.org/json?lat=9&lng=7")
 response2.raise_for_status()
 data=response2.json()
 sunrise=int(data["results"]["sunrise"].split("T")[1].split(":")[0])
@@ -66,4 +66,4 @@ else:
 #If the ISS is close to my current position
 # and it is currently dark
 # Then send me an email to tell me to look up.
-# BONUS: run the code every 60 seconds.
+
